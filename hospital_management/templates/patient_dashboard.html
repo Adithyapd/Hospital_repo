@@ -1,0 +1,145 @@
+{% include 'patient_navbar.html' %}
+{% block content %}
+{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 40px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, <a href="{% url 'patient_detail' patient.id %}">{{ patient.name }}</a></h1>
+
+        <h2>Appointment Details</h2>
+        <table id="appointments" class="table table-bordered">
+            <tr>
+                <th style="color: #000;">Patient Name</th>
+                <th style="color: #000;">Phone Number</th>
+                <th style="color: #000;">Email</th>
+                <th style="color: #000;">Doctor</th>
+                <th style="color: #000;">Booking Date</th>
+                <th style="color: #000;">Booked On</th>
+                <th style="color: #000;">Status</th>
+                <th style="color: #000;">Actions</th>
+            </tr>
+            {% if appointments %}
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.Patient_name }}</td>
+                    <td>{{ appointment.Phone_number }}</td>
+                    <td>{{ appointment.Email_id }}</td>
+                    <td>{{ appointment.Doctor_name }}</td>
+                    <td>{{ appointment.Booking_date }}</td>
+                    <td>{{ appointment.Booked_on }}</td>
+                    <td>{{ appointment.get_status_display }}</td>
+                    <td>
+                        {% if appointment.status != 'completed' and appointment.status != 'cancelled' %}
+                            <a href="{% url 'reschedule_appointment' appointment.id %}" class="btn btn-warning btn-sm">Reschedule</a>
+                            <form method="post" action="{% url 'confirm_cancel_appointment' appointment.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8" class="no-data">No appointments found.</td>
+                </tr>
+            {% endif %}
+        </table>
+
+        <h2>Prescription Details</h2>
+        <table id="prescriptions" class="table table-bordered">
+            <tr>
+                <th style="color: #000;">Doctor</th>
+                <th style="color: #000;">Patient Name</th>
+                <th style="color: #000;">Medication</th>
+                <th style="color: #000;">Dosage</th>
+                <th style="color: #000;">Frequency</th>
+                <th style="color: #000;">Start Date</th>
+                <th style="color: #000;">End Date</th>
+                <th style="color: #000;">Notes</th>
+            </tr>
+            {% if prescriptions %}
+                {% for prescription in prescriptions %}
+                <tr>
+                    <td>{{ prescription.doctor }}</td>
+                    <td>{{ prescription.patient_name }}</td>
+                    <td>{{ prescription.medication }}</td>
+                    <td>{{ prescription.dosage }}</td>
+                    <td>{{ prescription.frequency }}</td>
+                    <td>{{ prescription.start_date }}</td>
+                    <td>{{ prescription.end_date }}</td>
+                    <td>{{ prescription.notes }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8" class="no-data">No prescriptions found.</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

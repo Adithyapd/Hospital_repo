@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Authentication</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=800&q=80&w=1200') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .card {
+            width: 400px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+            background-color: #fff;
+            position: relative;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        .nav-tabs .nav-link {
+            border-radius: 10px 10px 0 0;
+            color: #495057;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .tab-content {
+            padding: 20px;
+        }
+        .btn {
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="card">
+        <div class="card-header text-center">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="signup" aria-selected="false">Signup</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <form method="POST" action="{% url 'staff_login' %}" class="p-3">
+                    {% csrf_token %}
+                    {{ form_login.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+                    <div class="text-center mt-3">
+                        <p class="text-muted">Not signed up yet? <a href="#signup" class="text-primary" id="signup-link">Signup here</a></p>
+                    </div>
+                    {% if form_login.errors %}
+                    <p class="error mt-3">{{ form_login.errors }}</p>
+                    {% endif %}
+                </form>
+            </div>
+            <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                <form method="POST" action="{% url 'staff_signup' %}" class="p-3">
+                    {% csrf_token %}
+                    {{ form_signup.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Signup</button>
+                    {% if form_signup.errors %}
+                    <p class="error mt-3">{{ form_signup.errors }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('signup-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('signup-tab').click();
+        });
+    </script>
+</body>
+</html>

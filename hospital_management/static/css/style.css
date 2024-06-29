@@ -1,0 +1,294 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+}
+.all-content{
+  background: #f7f5f2;
+}
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: #b2744c;
+  border-radius: 10px;
+}
+html::-webkit-scrollbar{
+  width: 10px;
+}
+/* navbar */
+#navbar{
+  background-color: #4251f5;
+  font-family: 'Roboto', sans-serif;
+}
+#logo img{
+  border-radius: 30px;
+  width: 50px;
+  margin-left: 40px;
+}
+.navbar-nav{
+  margin-left: 50px;
+}
+.nav-item .nav-link{
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+.nav-item .nav-link:hover{
+  background: #f7f5f2;
+  border-radius: 5px;
+  color: black;
+}
+#navbar form button{
+  background: blue;
+  color: white;
+  border: 1px solid white;
+}
+/* navbar */
+/* home content */
+
+.content{
+  padding-top: 210px;
+  margin-left: 56px;
+}
+.content h3{
+  font-size: 50px;
+  color: white;
+}
+.content p{
+  margin-top: 10px;
+  color: white;
+}
+#btn{
+  width: 150px;
+  height: 36px;
+  margin-top: 20px;
+  background: white;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+#btn:hover{
+  background: #4b42f5;
+  color: white;
+}
+/* home content */
+
+
+
+
+
+
+/* about */
+#about{
+  width: 100%;
+  height: 70vh;
+  background: #f7f5f2;
+  font-family: 'Roboto', sans-serif;
+}
+#about .container{
+  padding-top: 70px;
+}
+.heading{
+  text-align: center;
+  margin-bottom: 50px;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+}
+.heading span{
+  color: #4251f5;
+}
+#about .card{
+  border-radius: 10px;
+}
+#about .card img{
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+#about-btn{
+  width: 200px;
+  height: 36px;
+  background: transparent;
+  border: 2px solid green;
+  color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.5s;
+  cursor: pointer;
+}
+#about-btn:hover{
+  background: #4251f5;
+  color: white;
+}
+@media screen and (max-width:982px){
+  #about p{
+    font-size: 8px;
+  }
+}
+@media screen and (max-width:766px){
+  #about p{
+    font-size: 15px;
+  }
+  #about{
+    height: 120vh;
+  }
+}
+/* about */
+
+/* register and login */
+
+
+
+/* top cards */
+
+/* top cards */
+
+
+
+
+
+
+
+/* menu */
+
+/* menu */
+
+
+
+
+
+
+
+/* department */
+.department{
+  width: 100%;
+  background: #f7f5f2;
+  font-family: 'Roboto', sans-serif;
+}
+.heading4{
+  text-align: center;
+  color: #4251f5;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 80px;
+
+}
+
+#container3{
+  margin-top: 30px;
+}
+.department h3{
+  text-align: center;
+  color: black;
+  font-size: 23px;
+}
+.department p{
+  color: #b2744c;
+  padding-top: 10px;
+}
+.department p span{
+  float: right;
+  cursor: pointer;
+}
+.card img {
+      width: 100%;
+      max-width: 100%; /* Ensure the image doesn't exceed the card width */
+      height: 200px; /* Set a fixed height */
+      object-fit: cover; /* Ensure the image covers the specified area */
+      border-radius: 8px 8px 0 0;
+        }
+
+/* doctor */
+
+
+
+
+
+/* gallary */
+
+/* gallary */
+
+
+
+
+/* contact */
+
+
+/* contact */
+
+
+
+
+
+/* blogs */
+
+/* blogs */
+
+
+
+
+
+
+/* footer */
+#footer{
+  width: 100%;
+  background: #4251f5;
+  margin-top: 50px;
+}
+.footer-logo img{
+  width: 180px;
+  border-radius: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+#footer .social-links i{
+  font-size: 17px;
+  margin-left: 10px;
+  margin-top: 30px;
+  padding: 10px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.credit{
+  color: white;
+  margin-top: 20px;
+}
+.credit{
+  text-shadow: 0px 0px 1px black;
+}
+.credit a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.credit a span{
+  color: black;
+}
+.copyright span{
+  color: black;
+}
+/* footer */
+html{
+  scroll-behavior: smooth;
+}
+.arrow{
+  position: fixed;
+  border-radius: 50px;
+  height: 50px;
+  bottom: 40px;
+  right: 50px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+}

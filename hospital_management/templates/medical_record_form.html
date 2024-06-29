@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Record</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'images/car1.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* Set a fallback font family */
+        }
+        .record-form {
+            width: 90%;
+            max-width: 600px; /* Increased max-width */
+            padding: 20px; /* Reduced padding */
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            max-height: 50vh; /* Reduced max-height */
+            overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+        }
+        .record-form h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333; /* Darkened text color for better contrast */
+            font-size: 24px; /* Adjusted font size */
+        }
+        .record-form hr {
+            margin-bottom: 20px; /* Reduced margin */
+            border-color: #ccc; /* Lighter border color */
+        }
+        .record-form .form-group {
+            margin-bottom: 15px; /* Reduced margin */
+        }
+        .record-form label {
+            font-weight: bold;
+            color: #555; /* Slightly darker label color */
+        }
+        .record-form input[type="text"],
+        .record-form select,
+        .record-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .record-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .record-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="record-form">
+        <h1>Medical Record</h1>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_patient_name">Patient Name:</label>
+                {{ form.patient_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_diagnosis">Diagnosis:</label>
+                {{ form.diagnosis }}
+            </div>
+            <div class="form-group">
+                <label for="id_treatment_plan">Treatment Plan:</label>
+                {{ form.treatment_plan }}
+            </div>
+            <div class="form-group">
+                <label for="id_doctor">Doctor:</label>
+                {{ form.doctor }}
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+
+

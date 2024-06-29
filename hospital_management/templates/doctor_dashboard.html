@@ -1,0 +1,166 @@
+{% include 'doctor_navbar.html' %}
+{% block content %}
+{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+        .no-data {
+            text-align: center;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome, {{ doctor.name }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Appointments</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color: #000;">Patient Name</th>
+                            <th style="color: #000;">Phone Number</th>
+                            <th style="color: #000;">Email</th>
+                            <th style="color: #000;">Doctor</th>
+                            <th style="color: #000;">Booking Date</th>
+                            <th style="color: #000;">Booked On</th>
+                            <th style="color: #000;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if appointments %}
+                            {% for appointment in appointments %}
+                            <tr>
+                                <td>{{ appointment.Patient_name }}</td>
+                                <td>{{ appointment.Phone_number }}</td>
+                                <td>{{ appointment.Email_id }}</td>
+                                <td>{{ appointment.Doctor_name }}</td>
+                                <td>{{ appointment.Booking_date }}</td>
+                                <td>{{ appointment.Booked_on }}</td>
+                                <td>{{ appointment.status }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="no-data">No appointments found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Prescriptions</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color: #000;">Patient Name</th>
+                            <th style="color: #000;">Medication</th>
+                            <th style="color: #000;">Dosage</th>
+                            <th style="color: #000;">Frequency</th>
+                            <th style="color: #000;">Start Date</th>
+                            <th style="color: #000;">End Date</th>
+                            <th style="color: #000;">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if prescriptions %}
+                            {% for prescription in prescriptions %}
+                            <tr>
+                                <td>{{ prescription.patient_name }}</td>
+                                <td>{{ prescription.medication }}</td>
+                                <td>{{ prescription.dosage }}</td>
+                                <td>{{ prescription.frequency }}</td>
+                                <td>{{ prescription.start_date }}</td>
+                                <td>{{ prescription.end_date }}</td>
+                                <td>{{ prescription.notes }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="no-data">No prescriptions found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Medical Records</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color: #000;">Patient Name</th>
+                            <th style="color: #000;">Diagnosis</th>
+                            <th style="color: #000;">Treatment Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if medical_records %}
+                            {% for record in medical_records %}
+                            <tr>
+                                <td>{{ record.patient_name }}</td>
+                                <td>{{ record.diagnosis }}</td>
+                                <td>{{ record.treatment_plan }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="no-data">No medical records found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
